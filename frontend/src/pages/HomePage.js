@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../context/AuthContext';
-import api from '../config/axiosConfig';
+// import api from '../config/axiosConfig';
+import useAxios from '../utils/useAxios';
 
 const HomePage = () => {
     const [notes, setNotes] = useState([]);
-    const { authTokens, logoutUser } = useContext(AuthContext);
+    // const { authTokens, logoutUser } = useContext(AuthContext);
+    const api = useAxios();
 
     useEffect(() => {
         getNotes();
