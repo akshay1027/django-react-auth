@@ -1,11 +1,11 @@
+/* eslint-disable indent */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import AppProviders from './AppProviders';
+import App from './App';
 
 ReactDOM.render(
-    <React.StrictMode>
-        <AppProviders />
-    </React.StrictMode>,
-    document.getElementById('root')
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );

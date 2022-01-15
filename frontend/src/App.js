@@ -1,28 +1,23 @@
-import React, { useEffect, Suspense, lazy } from 'react';
-// import axios from 'axios';
+import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {
-    LinearProgress
-} from '@material-ui/core';
+import PrivateRoute from './utils/PrivateRoute';
+import { AuthProvider } from './context/AuthContext';
 
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
 
-import PrivateRoute from './utils/PrivateRoute';
-
-const HomePage = lazy(() => import('./pages/HomePage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-
 const App = () => {
-    useEffect(() => {
-    });
     return (
-        <Router>
-            <Route to='/' component={Header} />
-            <Suspense fallback={<LinearProgress />}>
-                <PrivateRoute path='/' exact > {HomePage} </PrivateRoute>
-                <Route path='/login' component={LoginPage} exact />
-            </Suspense>
-        </Router>
+        <div className="App">
+            <Router>
+                <AuthProvider>
+                    <Header />
+                    <PrivateRoute component={HomePage} path="/" exact />
+                    <Route component={LoginPage} path="/login" />
+                </AuthProvider>
+            </Router>
+        </div>
     );
 };
 
